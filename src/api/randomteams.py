@@ -43,7 +43,7 @@ def generate_brackets(list_teams, pulse_index=None):
     random.shuffle(shuffle_teams)
 
     # Return the shuffled list of teams and the pulse index
-    return list_teams, shuffle_teams, pulse_index
+    return shuffle_teams, pulse_index
 
 def verify(data):
 
