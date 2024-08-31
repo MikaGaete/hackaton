@@ -43,8 +43,8 @@ def initFixture(teams:list[str]):
                 "id" : mId,
                 "date" : None,
                 "teams" : [
-                    {"name" : (f"R{phaseId}M{matl["id"]}") if matl["teams"][1] else matl["teams"][0]},
-                    {"name" : (f"R{phaseId}M{matr["id"]}") if matr["teams"][1] else matr["teams"][0]}
+                    {"name" : (f"R{phaseId}M{matl['id']}") if matl["teams"][1]['name'] else matl["teams"][0]['name']},
+                    {"name" : (f"R{phaseId}M{matr['id']}") if matr["teams"][1]['name'] else matr["teams"][0]['name']}
                 ]
             })
 

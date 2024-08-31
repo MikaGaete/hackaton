@@ -18,7 +18,9 @@ def get_last_pulse():
   return pulse_index, seed
 
 def get_seed_by_pid(pulse_id):
-  content = requests.get(beacon_url + '/' + str(pulse_id))
+  content = requests.get(beacon_url + '?chainId=2&pulseId=' + str(pulse_id))
+
+  print(content.json())
 
   # JSON containing all the pulse data
   pulse = content.json()["pulse"]
@@ -28,7 +30,8 @@ def get_seed_by_pid(pulse_id):
   return seed
 
 def generate_brackets(list_teams, pulse_index=None):
-    shuffle_teams = list_teams.copy()
+    print(list_teams)
+    shuffle_teams = list_teams
 
     if(pulse_index == None):
         # Get the last pulse from the beacon
@@ -45,17 +48,12 @@ def generate_brackets(list_teams, pulse_index=None):
     # Return the shuffled list of teams and the pulse index
     return shuffle_teams, pulse_index
 
-def verify(data):
-
-    # Check if there is data to be verified
-    if data == None:
-        return "No data to be verified"
-    
+def verify(t, p):
     # Generate the brackets
-    initial_teams, to_verify_output, pulse_index = generate_brackets(data[0], data[2])
+    to_verify_output, pulse_index = generate_brackets(t, p)
     
     # Check if the initial teams are the same as the output
-    if initial_teams == to_verify_output:
+    if t == to_verify_output:
         return "The process was truly random"
     else: # If the initial teams are not the same as the output
         return "The process was not truly random"
