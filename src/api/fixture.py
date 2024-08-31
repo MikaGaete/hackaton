@@ -66,8 +66,7 @@ def cleanFixture(fixture):
     i = 0
     while i<n:
         if mats[i]["teams"][1]["name"] == None:
-            fixture[0]["seeds"] = fixture[0]["seeds"][:i]
-            break
+            mats[i]["teams"][1]["name"] = "--------"
         i+=1
     return fixture
 
