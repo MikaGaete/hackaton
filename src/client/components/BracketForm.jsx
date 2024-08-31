@@ -18,32 +18,11 @@ export const BracketForm = () => {
         setLoading(true);
 
         try {
-            //const {data} = await axios.post('TBD/brackets', teams, {});
-            //console.log(data);
-            const data = [{
-                id: "P0",
-                matches: [{
-                    id: "M1",
-                    t0: crypto.randomUUID(),
-                    t1: crypto.randomUUID()
-                },
-                    {
-                        id: "M2",
-                        t0: crypto.randomUUID(),
-                        t1: crypto.randomUUID()
-                    }
-                ]
-            },
-                {
-                    id: "P1",
-                    matches: [{
-                        id: "M1",
-                        t0: crypto.randomUUID(),
-                        t1: crypto.randomUUID()
-                    }]
-                }]
+            const {data} = await axios.post('http://127.0.0.1:5000/fixture', teams, {});
+            const {pulse, original, fixture} = data;
+            setLoading(false);
 
-            navigate(`/brackets/:${crypto.randomUUID()}`, {state: { data }});
+            navigate(`/brackets/:${crypto.randomUUID()}`, {state: { data: fixture, pulse, original }});
         }
         catch (error) {
             console.log(error);
